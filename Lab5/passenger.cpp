@@ -15,21 +15,18 @@ enum Embarkation {
     Southampton
 };
 
-void printEmbarkation(std::ofstream* fout, Embarkation em) {
-    std::string s;
+std::string printEmbarkation(Embarkation em) {
     switch (em) {
         case Cherbourg:
-            s = "Cherbourg";
-            break;
+            return "Cherbourg";
         case Queenstown:
-            s = "Queenstown";
-            break;
+            return "Queenstown";
         case Southampton:
-            s = "Southampton";
-            break;
-    }
+            return "Southampton";
 
-    (*fout) << s;
+        default:
+            return "Unknown";
+    }
 }
 
 struct Passenger {
@@ -39,8 +36,8 @@ struct Passenger {
     std::string name;
     Sex sex;
     float age;
-    int sibsp;
-    int parch;
+    short sibsp;
+    short parch;
     std::string ticket;
     float fare;
     std::string cabin;

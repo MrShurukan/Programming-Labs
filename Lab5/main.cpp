@@ -76,9 +76,13 @@ int main() {
         passengersInState[p.embarkation]++;
     }
 
-    averageAge /= ageAmount;
-    averageBySex[Male] /= ageAmountBySex[Male];
-    averageBySex[Female] /= ageAmountBySex[Female];
+    if (ageAmount != 0)
+        averageAge /= ageAmount;
+
+    if (ageAmountBySex[Male] != 0)
+        averageBySex[Male] /= ageAmountBySex[Male];
+    if (ageAmountBySex[Female] != 0)
+        averageBySex[Female] /= ageAmountBySex[Female];
 
     fout << "Общее число выживших: " << aliveTotal << '\n';
     fout << "Число выживших 1-го класса: " << aliveByClass[Upper] << '\n';
@@ -98,7 +102,7 @@ int main() {
         if (passengersInState[em] > passengersInState[max]) max = em;
     }
     fout << "Штат, в котором село больше всего пассажиров: ";
-    printEmbarkation(&fout, max);
+    fout << printEmbarkation(max);
     fout << '\n';
 
     // Список несовершеннолетних
