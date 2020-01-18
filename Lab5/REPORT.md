@@ -51,9 +51,9 @@ Cтудента 1 курса группы ПИ-б-о-191(1)<br/>
 
 Как выглядит мой финальный код:
 
-```cpp
-// passenger.cpp
+**passenger.cpp**
 
+```cpp
 enum Class {
     Upper,
     Middle,
@@ -130,9 +130,9 @@ void printPassenger(Passenger psg) {
 }
 ```
 
-```cpp
-// readnext.cpp
+**readNext.cpp**
 
+```cpp
 #include <cstring>
 
 // Аналог strtok, который может читать пустые лексемы
@@ -198,9 +198,9 @@ float readNextFloat(char* string, char delim, float defaultValue = -1.0) {
 }
 ```
 
-```cpp
-// main.cpp
+**main.cpp**
 
+```cpp
 #include <iostream>
 #include <vector>
 #include <fstream>
