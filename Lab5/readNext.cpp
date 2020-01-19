@@ -1,4 +1,5 @@
 #include <cstring>
+#include <iostream>
 
 // Аналог strtok, который может читать пустые лексемы
 char* readUntil(char* string, char delim) {

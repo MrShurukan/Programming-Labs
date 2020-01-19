@@ -1,19 +1,7 @@
-enum Class {
-    Upper,
-    Middle,
-    Lower,
-};
+#include <iostream>
 
-enum Sex {
-    Male,
-    Female
-};
-
-enum Embarkation {
-    Cherbourg,
-    Queenstown,
-    Southampton
-};
+#include "passenger.h"
+#include "readNext.h"
 
 std::string printEmbarkation(Embarkation em) {
     switch (em) {
@@ -28,21 +16,6 @@ std::string printEmbarkation(Embarkation em) {
             return "Unknown";
     }
 }
-
-struct Passenger {
-    short id;
-    bool hasSurvived;
-    Class pClass;
-    std::string name;
-    Sex sex;
-    float age;
-    short sibsp;
-    short parch;
-    std::string ticket;
-    float fare;
-    std::string cabin;
-    Embarkation embarkation;
-};
 
 void initPassenger(Passenger* psg, char* string) {
     // PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Ticket, Fare, Cabin, Embarked

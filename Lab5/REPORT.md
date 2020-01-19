@@ -43,17 +43,22 @@ Cтудента 1 курса группы ПИ-б-о-191(1)<br/>
 ![Изображение№2](/Lab5/Screenshots/Screenshot_2.png "Рис.2")\
 *Рис.2 Созданная структура данных для чтения train.csv*
 
-Я разделил свою программу на три файла:
+Я разделил свою программу на три основных файла и два вспомогательных:
 
 1. main.cpp, содержащий в себе основной код чтения из train.csv и сборки финального расчёта.
-2. passenger.cpp, содержащий в себе структуру Passenger, её перечисления, а так же вспомогательные функции вроде инициализации пассажира из си-строки.
-3. readNext.cpp, содержащий в себе функции по упрощению разделения строки на лексемы и дальнейшей конвертации в различные типы.
+2. passenger.cpp, содержащий в себе реализацию функций по инициализации структуры Passenger, а так же превращения enum Embarkation в строку
+3. passenger.h, являющийся заголовочным файлом для passenger.cpp
+4. readNext.cpp, содержащий в себе реализации функций по упрощению разделения строки на лексемы и дальнейшей конвертации в различные типы.
+5. readNext.h - заголовочный файл readNext.cpp.
 
 Как выглядит мой финальный код:
 
-**passenger.cpp**
+**passenger.h**
 
 ```cpp
+#ifndef PASSENGER_H
+#define PASSENGER_H
+
 enum Class {
     Upper,
     Middle,
@@ -71,19 +76,8 @@ enum Embarkation {
     Southampton
 };
 
-std::string printEmbarkation(Embarkation em) {
-    switch (em) {
-        case Cherbourg:
-            return "Cherbourg";
-        case Queenstown:
-            return "Queenstown";
-        case Southampton:
-            return "Southampton";
-
-        default:
-            return "Unknown";
-    }
-}
+// Преобразование Embarkation в строку
+std::string printEmbarkation(Embarkation em);
 
 struct Passenger {
     short id;
@@ -99,6 +93,64 @@ struct Passenger {
     std::string cabin;
     Embarkation embarkation;
 };
+
+// Инициализация пассажира по строке из CSV файла
+void initPassenger(Passenger* psg, char* string);
+
+// Debug
+void printPassenger(Passenger psg);
+
+#endif
+```
+
+**readNext.h**
+
+```cpp
+#ifndef READNEXT_H
+#define READNEXT_H
+
+// Аналог strtok, который может читать пустые лексемы
+char* readUntil(char* string, char delim);
+
+// readUntil, который возвращает std::string
+std::string readNextStr(char* string, char delim);
+
+// Чтение имени пассажира
+std::string readNextName(char* string);
+
+// readUntil, который возвращает int
+int readNextInt(char* string, char delim, int defaultValue = -1);
+
+// readUntil, который возвращает bool
+bool readNextBool(char* string, char delim);
+
+// readUntil, который возвращает float
+float readNextFloat(char* string, char delim, float defaultValue = -1.0);
+
+#endif
+```
+
+**passenger.cpp**
+
+```cpp
+#include <iostream>
+
+#include "passenger.h"
+#include "readNext.h"
+
+std::string printEmbarkation(Embarkation em) {
+    switch (em) {
+        case Cherbourg:
+            return "Cherbourg";
+        case Queenstown:
+            return "Queenstown";
+        case Southampton:
+            return "Southampton";
+
+        default:
+            return "Unknown";
+    }
+}
 
 void initPassenger(Passenger* psg, char* string) {
     // PassengerId, Survived, Pclass, Name, Sex, Age, SibSp, Parch, Ticket, Fare, Cabin, Embarked
@@ -134,6 +186,7 @@ void printPassenger(Passenger psg) {
 
 ```cpp
 #include <cstring>
+#include <iostream>
 
 // Аналог strtok, который может читать пустые лексемы
 char* readUntil(char* string, char delim) {
@@ -207,9 +260,9 @@ float readNextFloat(char* string, char delim, float defaultValue = -1.0) {
 #include <cstdlib>
 
 // Файл с вспомогательными функциями для анализа строки
-#include "readNext.cpp"
+#include "readNext.h"
 // Файл со структурой и остальным необходимым
-#include "passenger.cpp"
+#include "passenger.h"
 
 std::vector<Passenger> passengers;
 
@@ -321,10 +374,10 @@ int main() {
 ```
 
 Ссылка на полученный файл:
-[output.txt](/Lab5/output.txt "Необязательная подсказка")
+[output.txt](/Lab5/output.txt)
 
 * * *
 
 ## Вывод
 
-Я научился работать с текстовыми файлами, закрепил навыки работы со структурами.
+Я научился работать с текстовыми файлами, закрепил навыки работы со структурами, закрепил навыки работы с множественными файлами в проекте.

@@ -4,9 +4,9 @@
 #include <cstdlib>
 
 // Файл с вспомогательными функциями для анализа строки
-#include "readNext.cpp"
+#include "readNext.h"
 // Файл со структурой и остальным необходимым
-#include "passenger.cpp"
+#include "passenger.h"
 
 std::vector<Passenger> passengers;
 
