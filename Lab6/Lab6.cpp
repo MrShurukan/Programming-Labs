@@ -72,7 +72,7 @@ Data parseData(const nlohmann::json& json)
 
             icons.push_back(extractIcon(el.value()));
             temps.push_back(floatToString(temp));
-            
+
             alreadyCheckedDate.insert(date);
         }
     }
@@ -88,7 +88,7 @@ void gen_response(const httplib::Request& req, httplib::Response& res) {
     if (weather_res && weather_res->status == 200) {
         auto json = nlohmann::json::parse(weather_res->body);
 
-        // Читаем весь файл в string stream
+        // Читаем весь файл
         std::ifstream ifs("Template.html");
 
         std::string Template, buffer;
