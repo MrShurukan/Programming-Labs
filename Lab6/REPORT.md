@@ -153,6 +153,11 @@ void fillTemplate(std::string* t, const std::string& substr, const std::vector<s
 ![Изображение№15](Screenshots/Screenshot_18.png "Рис.15")\
 *Рис.15 Заполнение шаблона значениями и выставление контента страницы*
 
+На рисунке 16 можно увидеть пример работы программы (http://localhost:3000)
+
+![Изображение№16](Screenshots/Screenshot_13.png "Рис.16")\
+*Рис.16 Пример работы программы*
+
 ### Полученный код
 
 ```cpp
